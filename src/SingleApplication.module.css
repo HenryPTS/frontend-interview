@@ -13,6 +13,7 @@
   text-align: left;
   border-right: 1px solid #eee;
   padding: 0 15px;
+  font-family: 'Aesop';
 }
 
 .cell sub {
@@ -20,4 +21,15 @@
   font-size: 0.8rem;
   color: #999;
   margin-bottom: 5px;
+}
+
+.cell span {
+  color: var(--color-denim-15);
+  font-weight: 500;
+
+}
+
+.cell a {
+  color: var(--color-denim-45);
+  font-weight: 500;
 }

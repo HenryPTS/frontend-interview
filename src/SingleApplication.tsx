@@ -1,32 +1,42 @@
 import React from "react";
 import styles from "./SingleApplication.module.css";
+import dayjs from "dayjs";
 
-const SingleApplication = ({ application }) => {
+const SingleApplication = ({ application, ...rest }) => {
+  const date_created = dayjs(application.date_created).format("DD-MM-YYYY");
+  const expiry_date = dayjs(application.expiry_date).format("DD-MM-YYYY");
+  const loan_amount = new Intl.NumberFormat("en-GB", {
+    style: "currency",
+    currency: "GBP",
+    maximumFractionDigits: 0,
+  }).format(application.loan_amount);
   return (
-    <div className={styles.SingleApplication}>
+    <div className={styles.SingleApplication} {...rest}>
       <div className={styles.cell}>
         <sub>Company</sub>
-        {application.company}
+        <span>{application.company}</span>
       </div>
       <div className={styles.cell}>
         <sub>Name</sub>
-        {application.first_name} {application.last_name}
+        <span>
+          {application.first_name} {application.last_name}
+        </span>
       </div>
       <div className={styles.cell}>
         <sub>Email</sub>
-        {application.email}
+        <a href={`mailto:${application.email}`}>{application.email}</a>
       </div>
       <div className={styles.cell}>
         <sub>Loan Amount</sub>
-        {application.loan_amount}
+        <span> {loan_amount}</span>
       </div>
       <div className={styles.cell}>
         <sub>Application Date</sub>
-        {application.date_created}
+        <span> {date_created}</span>
       </div>
       <div className={styles.cell}>
         <sub>Expiry date</sub>
-        {application.expiry_date}
+        <span> {expiry_date}</span>
       </div>
     </div>
   );
