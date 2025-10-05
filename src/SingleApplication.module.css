@@ -19,7 +19,7 @@
 .cell sub {
   display: block;
   font-size: 0.8rem;
-  color: #999;
+  color: var(--color-white-45);
   margin-bottom: 5px;
 }
 
