@@ -13,16 +13,21 @@ const Applications = () => {
 
   async function getLoanData(nextPage: number) {
     setIsLoading(true);
-    const res = await fetch(
-      `http://localhost:3001/api/applications?_page=${nextPage}&_limit=5`,
-      { cache: "no-store" }
-    );
-    const loanDataJson = await res.json();
-    setIsLoading(false);
-    if (Array.isArray(loanDataJson) && loanDataJson.length >= 1) {
-      setLoanData(loanDataJson);
-    } else {
-      setError("Loan data could not be fetched");
+    try {
+      const res = await fetch(
+        `http://localhost:3001/api/applications?_page=${nextPage}&_limit=5`,
+        { cache: "no-store" }
+      );
+      const loanDataJson = await res.json();
+      setIsLoading(false);
+      if (Array.isArray(loanDataJson) && loanDataJson.length >= 1) {
+        setLoanData(loanDataJson);
+      } else {
+        setError("Loan data could not be fetched");
+      }
+    } catch (error) {
+      setIsLoading(false);
+      setError(error.message);
     }
   }
 
